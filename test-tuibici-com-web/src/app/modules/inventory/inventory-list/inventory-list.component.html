@@ -1,1 +1,47 @@
-<p>inventory-list works!</p>
+<p-table #dt [value]="inventoryListObject" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      Biscicletas
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Imagen</th>
+      <th>Precio</th>
+      <th>Categoria</th>
+      <th>Calificacion</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>
+        {{product.bikeName}}
+      </td>
+      <td>
+        <img [src]="product.bikeImageUrl" 
+            [alt]="product.bikeName" 
+            width="100"
+            class="p-shadow-4" /></td>
+      <td>Є {{product.bikePrice}}</td>
+      <td>{{product.bikeCategory}}</td>
+      <td>
+        <!-- <p-rating [ngModel]="product.bikeRating" [readonly]="true" [cancel]="false"></p-rating> -->
+        {{product.bikeRating}}
+      </td>
+      <td>
+        <span [class]="'product-badge status-' + product.bikeInventoryStatus.toLowerCase()">
+          {{product.bikeInventoryStatus}}
+        </span>
+      </td>
+      <td></td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      En total son {{inventoryListObject ? inventoryListObject.length : 0 }} products.
+    </div>
+  </ng-template>
+</p-table>
